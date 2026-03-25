@@ -1,0 +1,1157 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Pengawas Madrasah - Mohsin, S.Pd., M.Pd.</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Source+Sans+3:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'hijau': {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+              950: '#052e16'
+            },
+            'emas': {
+              50: '#fefce8',
+              100: '#fef9c3',
+              200: '#fef08a',
+              300: '#fde047',
+              400: '#facc15',
+              500: '#eab308',
+              600: '#ca8a04',
+              700: '#a16207',
+              800: '#854d0e',
+              900: '#713f12'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .font-heading { font-family: 'Playfair Display', serif; }
+    .font-body { font-family: 'Source Sans 3', sans-serif; }
+    html, body { height: 100%; }
+    .app-wrapper { height: 100%; overflow-y: auto; }
+    .gradient-hero {
+      background: linear-gradient(135deg, #14532d 0%, #166534 50%, #1a472a 100%);
+    }
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(20, 83, 45, 0.15);
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #eab308;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .section-title::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #eab308, #facc15);
+      border-radius: 2px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+    .modal-overlay {
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full font-body bg-gray-50 text-gray-800">
+  <div class="app-wrapper"><!-- Navigation -->
+   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-hijau-950/95 backdrop-blur-sm shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-center justify-between h-16 md:h-20">
+      <div class="flex items-center gap-3">
+       <div class="w-10 h-10 rounded-full bg-emas-500 flex items-center justify-center"><i data-lucide="graduation-cap" class="w-6 h-6 text-hijau-950"></i>
+       </div><span class="font-heading text-white font-semibold text-lg hidden sm:block">Pengawas Madrasah</span>
+      </div><!-- Edit Mode Toggle --> <button id="editModeToggle" class="hidden md:flex items-center gap-2 px-3 py-2 bg-emas-500/20 text-emas-400 rounded-lg hover:bg-emas-500/30 transition-colors font-medium text-sm"> <i data-lucide="edit-3" class="w-4 h-4"></i> <span>Mode Edit</span> </button><!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-8"><a href="#beranda" class="nav-link text-white/90 hover:text-emas-400 transition-colors font-medium">Beranda</a> <a href="#profil" class="nav-link text-white/90 hover:text-emas-400 transition-colors font-medium">Profil</a> <a href="#madrasah" class="nav-link text-white/90 hover:text-emas-400 transition-colors font-medium">Madrasah Binaan</a> <a href="#program" class="nav-link text-white/90 hover:text-emas-400 transition-colors font-medium">Program</a> <a href="#kegiatan" class="nav-link text-white/90 hover:text-emas-400 transition-colors font-medium">Kegiatan</a>
+      </div><!-- Mobile Menu Button --> <button id="mobileMenuBtn" class="md:hidden p-2 text-white hover:text-emas-400 transition-colors"> <i data-lucide="menu" class="w-6 h-6"></i> </button>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-hijau-900 border-t border-hijau-800">
+     <div class="px-4 py-4 space-y-3"><a href="#beranda" class="block text-white/90 hover:text-emas-400 py-2 font-medium">Beranda</a> <a href="#profil" class="block text-white/90 hover:text-emas-400 py-2 font-medium">Profil</a> <a href="#madrasah" class="block text-white/90 hover:text-emas-400 py-2 font-medium">Madrasah Binaan</a> <a href="#program" class="block text-white/90 hover:text-emas-400 py-2 font-medium">Program</a> <a href="#kegiatan" class="block text-white/90 hover:text-emas-400 py-2 font-medium">Kegiatan</a>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="beranda" class="gradient-hero pt-24 md:pt-32 pb-16 md:pb-24 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+     <svg class="w-full h-full" viewbox="0 0 100 100" preserveaspectratio="none"><pattern id="pattern" x="0" y="0" width="20" height="20" patternunits="userSpaceOnUse">
+       <circle cx="10" cy="10" r="1" fill="currentColor" />
+      </pattern> <rect fill="url(#pattern)" width="100" height="100" />
+     </svg>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+     <div class="flex flex-col md:flex-row items-center gap-8 md:gap-16"><!-- Profile Image -->
+      <div class="relative animate-fade-in">
+       <div class="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-emas-400 to-emas-600 p-1.5 shadow-2xl">
+        <div class="w-full h-full rounded-full bg-hijau-800 flex items-center justify-center overflow-hidden"><i data-lucide="user" class="w-24 h-24 md:w-32 md:h-32 text-emas-400/80"></i>
+        </div>
+       </div>
+       <div class="absolute -bottom-2 -right-2 w-16 h-16 bg-emas-500 rounded-full flex items-center justify-center shadow-lg"><i data-lucide="award" class="w-8 h-8 text-hijau-950"></i>
+       </div>
+      </div><!-- Hero Content -->
+      <div class="text-center md:text-left animate-fade-in" style="animation-delay: 0.2s;">
+       <p class="text-emas-400 font-medium tracking-wider uppercase text-sm mb-2">Selamat Datang</p>
+       <h1 id="heroNama" class="font-heading text-3xl md:text-5xl lg:text-6xl text-white font-bold mb-4">Mohsin, S.Pd., M.Pd.</h1>
+       <p id="heroJabatan" class="text-xl md:text-2xl text-hijau-200 mb-2">Pengawas Madrasah Aliyah</p>
+       <p id="heroInstansi" class="text-lg text-hijau-300/80 mb-6">Kementerian Agama Kabupaten Pacitan</p>
+       <div class="bg-hijau-800/50 rounded-xl p-6 border border-hijau-700/50 max-w-xl"><i data-lucide="quote" class="w-8 h-8 text-emas-500 mb-3"></i>
+        <p id="heroKutipan" class="text-hijau-100 italic text-lg leading-relaxed">"Pendidikan berkualitas adalah fondasi peradaban. Bersama kita wujudkan madrasah unggul, berakhlak mulia, dan berdaya saing."</p>
+       </div>
+       <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-8"><a href="#profil" class="bg-emas-500 hover:bg-emas-400 text-hijau-950 font-semibold px-6 py-3 rounded-lg transition-all shadow-lg hover:shadow-xl flex items-center gap-2"> <i data-lucide="user" class="w-5 h-5"></i> Lihat Profil </a> <a href="#kegiatan" class="bg-transparent border-2 border-emas-500/50 hover:border-emas-400 text-white font-semibold px-6 py-3 rounded-lg transition-all flex items-center gap-2"> <i data-lucide="calendar" class="w-5 h-5"></i> Kegiatan Terbaru </a>
+       </div>
+      </div>
+     </div><!-- Stats -->
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
+      <div class="bg-hijau-800/40 backdrop-blur rounded-xl p-6 text-center border border-hijau-700/30">
+       <div class="text-3xl md:text-4xl font-heading font-bold text-emas-400 mb-1" id="statMadrasah">
+        0
+       </div>
+       <p class="text-hijau-200 text-sm">Madrasah Binaan</p>
+      </div>
+      <div class="bg-hijau-800/40 backdrop-blur rounded-xl p-6 text-center border border-hijau-700/30">
+       <div class="text-3xl md:text-4xl font-heading font-bold text-emas-400 mb-1">
+        5
+       </div>
+       <p class="text-hijau-200 text-sm">Program Aktif</p>
+      </div>
+      <div class="bg-hijau-800/40 backdrop-blur rounded-xl p-6 text-center border border-hijau-700/30">
+       <div class="text-3xl md:text-4xl font-heading font-bold text-emas-400 mb-1" id="statKegiatan">
+        0
+       </div>
+       <p class="text-hijau-200 text-sm">Kegiatan Tahun Ini</p>
+      </div>
+      <div class="bg-hijau-800/40 backdrop-blur rounded-xl p-6 text-center border border-hijau-700/30">
+       <div class="text-3xl md:text-4xl font-heading font-bold text-emas-400 mb-1">
+        15+
+       </div>
+       <p class="text-hijau-200 text-sm">Tahun Pengalaman</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Profil Section -->
+   <section id="profil" class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
+      <div>
+       <h2 class="font-heading text-3xl md:text-4xl font-bold text-hijau-900 relative inline-block section-title">Profil Pengawas</h2>
+       <p class="text-gray-600 mt-6 max-w-2xl">Mengenal lebih dekat sosok pengawas madrasah yang berdedikasi untuk kemajuan pendidikan Islam di Kabupaten Pacitan.</p>
+      </div><button onclick="openEditModal('profil')" class="mt-6 md:mt-0 bg-hijau-600 hover:bg-hijau-700 text-white font-semibold px-5 py-3 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center gap-2"> <i data-lucide="edit-3" class="w-5 h-5"></i> Edit Profil </button>
+     </div>
+     <div class="grid md:grid-cols-2 gap-8"><!-- Biodata -->
+      <div class="bg-gradient-to-br from-hijau-50 to-white rounded-2xl p-8 shadow-lg border border-hijau-100 card-hover">
+       <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-xl bg-hijau-600 flex items-center justify-center"><i data-lucide="id-card" class="w-6 h-6 text-white"></i>
+        </div>
+        <h3 class="font-heading text-xl font-semibold text-hijau-900">Biodata</h3>
+       </div>
+       <div class="space-y-4">
+        <div class="flex justify-between py-3 border-b border-hijau-100"><span class="text-gray-600">Nama Lengkap</span> <span class="font-medium text-hijau-900">Mohsin, S.Pd., M.Pd.</span>
+        </div>
+        <div class="flex justify-between py-3 border-b border-hijau-100"><span class="text-gray-600">NIP</span> <span id="bioNip" class="font-medium text-hijau-900">197512151999031002</span>
+        </div>
+        <div class="flex justify-between py-3 border-b border-hijau-100"><span class="text-gray-600">Pangkat/Golongan</span> <span id="bioPangkat" class="font-medium text-hijau-900">Pembina Tk. I / IV.b</span>
+        </div>
+        <div class="flex justify-between py-3 border-b border-hijau-100"><span class="text-gray-600">Jabatan</span> <span class="font-medium text-hijau-900">Pengawas Madrasah</span>
+        </div>
+        <div class="flex justify-between py-3"><span class="text-gray-600">Unit Kerja</span> <span class="font-medium text-hijau-900 text-right">Kemenag Kab. Pacitan</span>
+        </div>
+       </div>
+      </div><!-- Pendidikan -->
+      <div class="bg-gradient-to-br from-emas-50 to-white rounded-2xl p-8 shadow-lg border border-emas-100 card-hover">
+       <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-xl bg-emas-500 flex items-center justify-center"><i data-lucide="graduation-cap" class="w-6 h-6 text-hijau-950"></i>
+        </div>
+        <h3 class="font-heading text-xl font-semibold text-hijau-900">Riwayat Pendidikan</h3>
+       </div>
+       <div class="space-y-6">
+        <div class="relative pl-8 border-l-2 border-emas-300">
+         <div class="absolute -left-2.5 top-0 w-5 h-5 rounded-full bg-emas-500"></div>
+         <p class="font-semibold text-hijau-900">S2 - Magister Pendidikan</p>
+         <p id="pendidikanS2" class="text-gray-600 text-sm">Universitas Negeri Surabaya (2015)</p>
+        </div>
+        <div class="relative pl-8 border-l-2 border-emas-300">
+         <div class="absolute -left-2.5 top-0 w-5 h-5 rounded-full bg-emas-400"></div>
+         <p class="font-semibold text-hijau-900">S1 - Sarjana Pendidikan</p>
+         <p id="pendidikanS1" class="text-gray-600 text-sm">IAIN Sunan Ampel Surabaya (1999)</p>
+        </div>
+        <div class="relative pl-8">
+         <div class="absolute -left-2.5 top-0 w-5 h-5 rounded-full bg-emas-300"></div>
+         <p class="font-semibold text-hijau-900">MA - Madrasah Aliyah</p>
+         <p class="text-gray-600 text-sm">MAN Pacitan (1994)</p>
+        </div>
+       </div>
+      </div><!-- Riwayat Jabatan -->
+      <div class="bg-gradient-to-br from-hijau-50 to-white rounded-2xl p-8 shadow-lg border border-hijau-100 card-hover">
+       <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-xl bg-hijau-600 flex items-center justify-center"><i data-lucide="briefcase" class="w-6 h-6 text-white"></i>
+        </div>
+        <h3 class="font-heading text-xl font-semibold text-hijau-900">Riwayat Jabatan</h3>
+       </div>
+       <div class="space-y-4">
+        <div class="bg-white rounded-lg p-4 border border-hijau-100">
+         <p class="font-semibold text-hijau-900">Pengawas Madrasah</p>
+         <p class="text-gray-600 text-sm">Kemenag Kab. Pacitan • 2018 - Sekarang</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 border border-hijau-100">
+         <p class="font-semibold text-hijau-900">Kepala MAN 1 Pacitan</p>
+         <p class="text-gray-600 text-sm">2012 - 2018</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 border border-hijau-100">
+         <p class="font-semibold text-hijau-900">Wakil Kepala Bidang Kurikulum</p>
+         <p class="text-gray-600 text-sm">MAN 1 Pacitan • 2008 - 2012</p>
+        </div>
+        <div class="bg-white rounded-lg p-4 border border-hijau-100">
+         <p class="font-semibold text-hijau-900">Guru Mata Pelajaran</p>
+         <p class="text-gray-600 text-sm">MAN 1 Pacitan • 1999 - 2008</p>
+        </div>
+       </div>
+      </div><!-- Visi Misi -->
+      <div class="bg-gradient-to-br from-hijau-900 to-hijau-800 rounded-2xl p-8 shadow-lg card-hover text-white">
+       <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-xl bg-emas-500 flex items-center justify-center"><i data-lucide="target" class="w-6 h-6 text-hijau-950"></i>
+        </div>
+        <h3 class="font-heading text-xl font-semibold">Visi &amp; Misi</h3>
+       </div>
+       <div class="space-y-6">
+        <div>
+         <h4 class="text-emas-400 font-semibold mb-2">Visi</h4>
+         <p id="visiText" class="text-hijau-100 leading-relaxed">Terwujudnya madrasah yang unggul, berkarakter Islami, dan berdaya saing dalam menghadapi tantangan pendidikan abad 21.</p>
+        </div>
+        <div>
+         <h4 class="text-emas-400 font-semibold mb-2">Misi</h4>
+         <ul id="misiText" class="text-hijau-100 space-y-2">
+          <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-emas-400 mt-0.5 flex-shrink-0"></i> <span>Meningkatkan mutu pembelajaran berbasis teknologi</span></li>
+          <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-emas-400 mt-0.5 flex-shrink-0"></i> <span>Memperkuat tata kelola madrasah yang transparan</span></li>
+          <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-emas-400 mt-0.5 flex-shrink-0"></i> <span>Mengembangkan karakter dan akhlak mulia siswa</span></li>
+          <li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-emas-400 mt-0.5 flex-shrink-0"></i> <span>Menciptakan lingkungan belajar yang inklusif</span></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Madrasah Binaan Section -->
+   <section id="madrasah" class="py-16 md:py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
+      <div>
+       <h2 class="font-heading text-3xl md:text-4xl font-bold text-hijau-900 relative inline-block section-title">Madrasah Binaan</h2>
+       <p class="text-gray-600 mt-6 max-w-2xl">Daftar madrasah yang berada di bawah pendampingan dan pengawasan.</p>
+      </div><button onclick="openModal('madrasah')" class="mt-6 md:mt-0 bg-hijau-600 hover:bg-hijau-700 text-white font-semibold px-5 py-3 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center gap-2"> <i data-lucide="plus" class="w-5 h-5"></i> Tambah Madrasah </button>
+     </div>
+     <div id="madrasahList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- Dynamic content -->
+     </div>
+     <div id="emptyMadrasah" class="hidden text-center py-16">
+      <div class="w-24 h-24 mx-auto bg-hijau-100 rounded-full flex items-center justify-center mb-6"><i data-lucide="school" class="w-12 h-12 text-hijau-400"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-gray-700 mb-2">Belum ada data madrasah</h3>
+      <p class="text-gray-500 mb-6">Klik tombol "Tambah Madrasah" untuk menambahkan data madrasah binaan.</p>
+     </div>
+    </div>
+   </section><!-- Program Section -->
+   <section id="program" class="py-16 md:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
+      <div class="text-center md:text-left flex-1">
+       <h2 class="font-heading text-3xl md:text-4xl font-bold text-hijau-900 relative inline-block section-title">Program Pendampingan</h2>
+       <p class="text-gray-600 mt-6 max-w-2xl">Program-program strategis untuk meningkatkan mutu dan kualitas madrasah binaan.</p>
+      </div><button onclick="openEditModal('program')" class="mt-6 md:mt-0 bg-hijau-600 hover:bg-hijau-700 text-white font-semibold px-5 py-3 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center gap-2 whitespace-nowrap"> <i data-lucide="edit-3" class="w-5 h-5"></i> Edit Program </button>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"><!-- Program 1 -->
+      <div class="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden card-hover">
+       <div class="h-3 bg-gradient-to-r from-hijau-600 to-hijau-500"></div>
+       <div class="p-8">
+        <div class="w-14 h-14 rounded-xl bg-hijau-100 flex items-center justify-center mb-6 group-hover:bg-hijau-600 transition-colors"><i data-lucide="book-open" class="w-7 h-7 text-hijau-600 group-hover:text-white transition-colors"></i>
+        </div>
+        <h3 class="font-heading text-xl font-semibold text-hijau-900 mb-3">Peningkatan Mutu Pembelajaran</h3>
+        <p class="text-gray-600 leading-relaxed mb-4">Pendampingan implementasi kurikulum merdeka, pengembangan metode pembelajaran inovatif, dan peningkatan kompetensi guru.</p>
+        <ul class="text-sm text-gray-500 space-y-2">
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-hijau-500"></i> Workshop Kurikulum Merdeka</li>
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-hijau-500"></i> Supervisi Akademik</li>
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-hijau-500"></i> Lesson Study</li>
+        </ul>
+       </div>
+      </div><!-- Program 2 -->
+      <div class="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden card-hover">
+       <div class="h-3 bg-gradient-to-r from-emas-500 to-emas-400"></div>
+       <div class="p-8">
+        <div class="w-14 h-14 rounded-xl bg-emas-100 flex items-center justify-center mb-6 group-hover:bg-emas-500 transition-colors"><i data-lucide="settings" class="w-7 h-7 text-emas-600 group-hover:text-white transition-colors"></i>
+        </div>
+        <h3 class="font-heading text-xl font-semibold text-hijau-900 mb-3">Tata Kelola &amp; Digitalisasi</h3>
+        <p class="text-gray-600 leading-relaxed mb-4">Penguatan manajemen madrasah dan transformasi digital dalam administrasi dan layanan pendidikan.</p>
+        <ul class="text-sm text-gray-500 space-y-2">
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emas-500"></i> Sistem Informasi Madrasah</li>
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emas-500"></i> E-Rapor &amp; E-Learning</li>
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emas-500"></i> Pelatihan Admin Digital</li>
+        </ul>
+       </div>
+      </div><!-- Program 3 -->
+      <div class="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden card-hover">
+       <div class="h-3 bg-gradient-to-r from-hijau-500 to-hijau-400"></div>
+       <div class="p-8">
+        <div class="w-14 h-14 rounded-xl bg-hijau-100 flex items-center justify-center mb-6 group-hover:bg-hijau-600 transition-colors"><i data-lucide="heart-handshake" class="w-7 h-7 text-hijau-600 group-hover:text-white transition-colors"></i>
+        </div>
+        <h3 class="font-heading text-xl font-semibold text-hijau-900 mb-3">Lingkungan Belajar Inklusif</h3>
+        <p class="text-gray-600 leading-relaxed mb-4">Menciptakan suasana belajar yang ramah, aman, dan mendukung keberagaman peserta didik.</p>
+        <ul class="text-sm text-gray-500 space-y-2">
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-hijau-500"></i> Anti-Bullying Campaign</li>
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-hijau-500"></i> Pendidikan Inklusi</li>
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-hijau-500"></i> Konseling Siswa</li>
+        </ul>
+       </div>
+      </div><!-- Program 4 -->
+      <div class="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden card-hover">
+       <div class="h-3 bg-gradient-to-r from-emas-400 to-emas-300"></div>
+       <div class="p-8">
+        <div class="w-14 h-14 rounded-xl bg-emas-100 flex items-center justify-center mb-6 group-hover:bg-emas-500 transition-colors"><i data-lucide="star" class="w-7 h-7 text-emas-600 group-hover:text-white transition-colors"></i>
+        </div>
+        <h3 class="font-heading text-xl font-semibold text-hijau-900 mb-3">Penguatan Karakter &amp; SKUA</h3>
+        <p class="text-gray-600 leading-relaxed mb-4">Program pembentukan karakter Islami dan penguatan standar kompetensi ubudiyah dan akhlak siswa.</p>
+        <ul class="text-sm text-gray-500 space-y-2">
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emas-500"></i> Tahfidz Al-Qur'an</li>
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emas-500"></i> Praktik Ibadah</li>
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emas-500"></i> Pembinaan Akhlak</li>
+        </ul>
+       </div>
+      </div><!-- Program 5 -->
+      <div class="group bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden card-hover md:col-span-2 lg:col-span-1">
+       <div class="h-3 bg-gradient-to-r from-hijau-600 to-emas-500"></div>
+       <div class="p-8">
+        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-hijau-100 to-emas-100 flex items-center justify-center mb-6 group-hover:from-hijau-600 group-hover:to-emas-500 transition-colors"><i data-lucide="calendar-check" class="w-7 h-7 text-hijau-600 group-hover:text-white transition-colors"></i>
+        </div>
+        <h3 class="font-heading text-xl font-semibold text-hijau-900 mb-3">Program Pendampingan Tahunan</h3>
+        <p class="text-gray-600 leading-relaxed mb-4">Rencana kerja tahunan pengawas yang terstruktur dan terukur untuk memastikan pencapaian target pembinaan.</p>
+        <ul class="text-sm text-gray-500 space-y-2">
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-hijau-500"></i> Kunjungan Rutin Berkala</li>
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-hijau-500"></i> Evaluasi &amp; Monitoring</li>
+         <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-hijau-500"></i> Laporan Triwulan</li>
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Kegiatan Section -->
+   <section id="kegiatan" class="py-16 md:py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
+      <div>
+       <h2 class="font-heading text-3xl md:text-4xl font-bold text-hijau-900 relative inline-block section-title">Kegiatan Pendampingan</h2>
+       <p class="text-gray-600 mt-6 max-w-2xl">Dokumentasi kegiatan pengawasan dan pendampingan madrasah.</p>
+      </div><button onclick="openModal('kegiatan')" class="mt-6 md:mt-0 bg-hijau-600 hover:bg-hijau-700 text-white font-semibold px-5 py-3 rounded-lg transition-all shadow-md hover:shadow-lg flex items-center gap-2"> <i data-lucide="plus" class="w-5 h-5"></i> Tambah Kegiatan </button>
+     </div>
+     <div id="kegiatanList" class="grid md:grid-cols-2 gap-6"><!-- Dynamic content -->
+     </div>
+     <div id="emptyKegiatan" class="hidden text-center py-16">
+      <div class="w-24 h-24 mx-auto bg-hijau-100 rounded-full flex items-center justify-center mb-6"><i data-lucide="calendar" class="w-12 h-12 text-hijau-400"></i>
+      </div>
+      <h3 class="text-xl font-semibold text-gray-700 mb-2">Belum ada data kegiatan</h3>
+      <p class="text-gray-500 mb-6">Klik tombol "Tambah Kegiatan" untuk menambahkan dokumentasi kegiatan.</p>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="bg-hijau-950 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid md:grid-cols-3 gap-8">
+      <div>
+       <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-emas-500 flex items-center justify-center"><i data-lucide="graduation-cap" class="w-6 h-6 text-hijau-950"></i>
+        </div><span class="font-heading text-lg font-semibold">Pengawas Madrasah</span>
+       </div>
+       <p class="text-hijau-300 text-sm leading-relaxed">Website resmi Pengawas Madrasah Kementerian Agama Kabupaten Pacitan. Bersama meningkatkan mutu pendidikan madrasah.</p>
+      </div>
+      <div>
+       <h4 class="font-semibold text-emas-400 mb-4">Kontak</h4>
+       <div class="space-y-3 text-sm text-hijau-300">
+        <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> Kemenag Kab. Pacitan, Jawa Timur</p>
+        <p class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> pengawas@kemenag-pacitan.go.id</p>
+        <p class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> (0357) 881234</p>
+       </div>
+      </div>
+      <div>
+       <h4 class="font-semibold text-emas-400 mb-4">Tautan</h4>
+       <div class="space-y-2 text-sm"><a href="#beranda" class="block text-hijau-300 hover:text-emas-400 transition-colors">Beranda</a> <a href="#profil" class="block text-hijau-300 hover:text-emas-400 transition-colors">Profil</a> <a href="#madrasah" class="block text-hijau-300 hover:text-emas-400 transition-colors">Madrasah Binaan</a> <a href="#program" class="block text-hijau-300 hover:text-emas-400 transition-colors">Program</a> <a href="#kegiatan" class="block text-hijau-300 hover:text-emas-400 transition-colors">Kegiatan</a>
+       </div>
+      </div>
+     </div>
+     <div class="border-t border-hijau-800 mt-8 pt-8 text-center text-hijau-400 text-sm">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+       <p>© 2024 Pengawas Madrasah - Kementerian Agama Kabupaten Pacitan. Hak Cipta Dilindungi.</p><button onclick="openEditModal('footer')" class="flex items-center gap-2 text-hijau-300 hover:text-emas-400 transition-colors"> <i data-lucide="edit-2" class="w-4 h-4"></i> <span class="text-sm">Edit Footer</span> </button>
+      </div>
+     </div>
+    </div>
+   </footer><!-- Modal -->
+   <div id="modal" class="fixed inset-0 z-50 hidden">
+    <div class="modal-overlay absolute inset-0" onclick="closeModal()"></div>
+    <div class="relative min-h-full flex items-center justify-center p-4">
+     <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg relative animate-fade-in">
+      <div class="flex items-center justify-between p-6 border-b border-gray-100">
+       <h3 id="modalTitle" class="font-heading text-xl font-semibold text-hijau-900"></h3><button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-lg transition-colors"> <i data-lucide="x" class="w-5 h-5 text-gray-500"></i> </button>
+      </div>
+      <div id="modalContent" class="p-6"><!-- Dynamic form content -->
+      </div>
+     </div>
+    </div>
+   </div><!-- Delete Confirmation -->
+   <div id="deleteConfirm" class="fixed inset-0 z-50 hidden">
+    <div class="modal-overlay absolute inset-0" onclick="closeDeleteConfirm()"></div>
+    <div class="relative min-h-full flex items-center justify-center p-4">
+     <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm relative animate-fade-in p-6 text-center">
+      <div class="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-4"><i data-lucide="trash-2" class="w-8 h-8 text-red-500"></i>
+      </div>
+      <h3 class="font-heading text-xl font-semibold text-gray-900 mb-2">Hapus Data?</h3>
+      <p class="text-gray-600 mb-6">Data yang dihapus tidak dapat dikembalikan.</p>
+      <div class="flex gap-3"><button onclick="closeDeleteConfirm()" class="flex-1 py-3 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors">Batal</button> <button id="confirmDeleteBtn" class="flex-1 py-3 px-4 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg transition-colors">Hapus</button>
+      </div>
+     </div>
+    </div>
+   </div><!-- Loading Overlay -->
+   <div id="loadingOverlay" class="fixed inset-0 z-50 hidden bg-black/50 flex items-center justify-center">
+    <div class="bg-white rounded-xl p-6 flex items-center gap-4">
+     <div class="w-8 h-8 border-4 border-hijau-200 border-t-hijau-600 rounded-full animate-spin"></div><span class="text-gray-700 font-medium">Memproses...</span>
+    </div>
+   </div>
+  </div>
+  <script>
+    // Default configuration
+    const defaultConfig = {
+      nama_pengawas: "Mohsin, S.Pd., M.Pd.",
+      jabatan: "Pengawas Madrasah Aliyah",
+      instansi: "Kementerian Agama Kabupaten Pacitan",
+      sambutan: "Selamat datang di website resmi Pengawas Madrasah",
+      kutipan: "Pendidikan berkualitas adalah fondasi peradaban. Bersama kita wujudkan madrasah unggul, berakhlak mulia, dan berdaya saing.",
+      nip: "197512151999031002",
+      pangkat: "Pembina Tk. I / IV.b",
+      pendidikan_s2: "Magister Pendidikan - Universitas Negeri Surabaya (2015)",
+      pendidikan_s1: "Sarjana Pendidikan - IAIN Sunan Ampel Surabaya (1999)",
+      pengalaman_tahun: "15+",
+      visi: "Terwujudnya madrasah yang unggul, berkarakter Islami, dan berdaya saing dalam menghadapi tantangan pendidikan abad 21.",
+      misi: "Meningkatkan mutu pembelajaran berbasis teknologi, Memperkuat tata kelola madrasah, Mengembangkan karakter siswa, Menciptakan lingkungan belajar inklusif",
+      background_color: "#052e16",
+      surface_color: "#ffffff",
+      text_color: "#1f2937",
+      primary_color: "#16a34a",
+      accent_color: "#eab308"
+    };
+
+    let config = { ...defaultConfig };
+    let allData = [];
+    let deleteCallback = null;
+    let editMode = false;
+
+    // Data handler for SDK
+    const dataHandler = {
+      onDataChanged(data) {
+        allData = data;
+        renderMadrasahList();
+        renderKegiatanList();
+        updateStats();
+      }
+    };
+
+    // Initialize SDKs
+    async function initApp() {
+      // Initialize Element SDK
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange: async (newConfig) => {
+            config = { ...defaultConfig, ...newConfig };
+            updateUI();
+          },
+          mapToCapabilities: (cfg) => ({
+            recolorables: [
+              {
+                get: () => cfg.background_color || defaultConfig.background_color,
+                set: (v) => { cfg.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+              },
+              {
+                get: () => cfg.surface_color || defaultConfig.surface_color,
+                set: (v) => { cfg.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }
+              },
+              {
+                get: () => cfg.text_color || defaultConfig.text_color,
+                set: (v) => { cfg.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+              },
+              {
+                get: () => cfg.primary_color || defaultConfig.primary_color,
+                set: (v) => { cfg.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); }
+              },
+              {
+                get: () => cfg.accent_color || defaultConfig.accent_color,
+                set: (v) => { cfg.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); }
+              }
+            ],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined
+          }),
+          mapToEditPanelValues: (cfg) => new Map([
+            ["nama_pengawas", cfg.nama_pengawas || defaultConfig.nama_pengawas],
+            ["jabatan", cfg.jabatan || defaultConfig.jabatan],
+            ["instansi", cfg.instansi || defaultConfig.instansi],
+            ["sambutan", cfg.sambutan || defaultConfig.sambutan],
+            ["kutipan", cfg.kutipan || defaultConfig.kutipan]
+          ])
+        });
+        config = { ...defaultConfig, ...window.elementSdk.config };
+      }
+
+      // Initialize Data SDK
+      if (window.dataSdk) {
+        const result = await window.dataSdk.init(dataHandler);
+        if (!result.isOk) {
+          console.error("Failed to initialize data SDK");
+        }
+      }
+
+      updateUI();
+      lucide.createIcons();
+    }
+
+    // Update UI based on config
+    function updateUI() {
+      document.getElementById('heroNama').textContent = config.nama_pengawas || defaultConfig.nama_pengawas;
+      document.getElementById('heroJabatan').textContent = config.jabatan || defaultConfig.jabatan;
+      document.getElementById('heroInstansi').textContent = config.instansi || defaultConfig.instansi;
+      document.getElementById('heroKutipan').textContent = config.kutipan || defaultConfig.kutipan;
+      
+      // Update profil section
+      document.getElementById('bioNip').textContent = config.nip || defaultConfig.nip;
+      document.getElementById('bioPangkat').textContent = config.pangkat || defaultConfig.pangkat;
+      document.getElementById('pendidikanS2').textContent = config.pendidikan_s2 || defaultConfig.pendidikan_s2;
+      document.getElementById('pendidikanS1').textContent = config.pendidikan_s1 || defaultConfig.pendidikan_s1;
+      document.getElementById('pengalamanTahun').textContent = config.pengalaman_tahun || defaultConfig.pengalaman_tahun;
+      document.getElementById('visiText').textContent = config.visi || defaultConfig.visi;
+      document.getElementById('misiText').innerHTML = (config.misi || defaultConfig.misi)
+        .split(',')
+        .map(m => `<li class="flex items-start gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-emas-400 mt-0.5 flex-shrink-0"></i> <span>${m.trim()}</span></li>`)
+        .join('');
+      
+      document.getElementById('statMadrasah').textContent = allData.filter(d => d.type === 'madrasah').length;
+      document.getElementById('statKegiatan').textContent = allData.filter(d => d.type === 'kegiatan').length;
+      
+      lucide.createIcons();
+    }
+
+    // Render Madrasah List
+    function renderMadrasahList() {
+      const container = document.getElementById('madrasahList');
+      const emptyState = document.getElementById('emptyMadrasah');
+      const madrasahData = allData.filter(d => d.type === 'madrasah');
+
+      if (madrasahData.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      
+      const existingItems = new Map(
+        [...container.children].map(el => [el.dataset.id, el])
+      );
+
+      madrasahData.forEach(item => {
+        if (existingItems.has(item.__backendId)) {
+          updateMadrasahCard(existingItems.get(item.__backendId), item);
+          existingItems.delete(item.__backendId);
+        } else {
+          container.appendChild(createMadrasahCard(item));
+        }
+      });
+
+      existingItems.forEach(el => el.remove());
+      lucide.createIcons();
+    }
+
+    function createMadrasahCard(item) {
+      const div = document.createElement('div');
+      div.dataset.id = item.__backendId;
+      div.className = 'bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden card-hover';
+      updateMadrasahCardContent(div, item);
+      return div;
+    }
+
+    function updateMadrasahCard(el, item) {
+      updateMadrasahCardContent(el, item);
+    }
+
+    function updateMadrasahCardContent(el, item) {
+      const jenjangColors = {
+        'MA': 'from-hijau-600 to-hijau-500',
+        'MTs': 'from-emas-500 to-emas-400',
+        'MI': 'from-hijau-500 to-emas-500'
+      };
+      const colorClass = jenjangColors[item.jenjang] || jenjangColors['MA'];
+
+      el.innerHTML = `
+        <div class="h-2 bg-gradient-to-r ${colorClass}"></div>
+        <div class="p-6">
+          <div class="flex items-start justify-between mb-4">
+            <span class="px-3 py-1 bg-hijau-100 text-hijau-700 text-sm font-medium rounded-full">${item.jenjang || 'MA'}</span>
+            <div class="flex gap-1">
+              <button onclick="editMadrasah('${item.__backendId}')" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <i data-lucide="edit-2" class="w-4 h-4 text-gray-500"></i>
+              </button>
+              <button onclick="confirmDelete('${item.__backendId}', 'madrasah')" class="p-2 hover:bg-red-50 rounded-lg transition-colors">
+                <i data-lucide="trash-2" class="w-4 h-4 text-red-500"></i>
+              </button>
+            </div>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-hijau-900 mb-3">${item.name || 'Nama Madrasah'}</h4>
+          <div class="space-y-2 text-sm text-gray-600">
+            <p class="flex items-start gap-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-hijau-500 mt-0.5 flex-shrink-0"></i>
+              <span>${item.alamat || '-'}</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="user" class="w-4 h-4 text-hijau-500 flex-shrink-0"></i>
+              <span>Kepala: ${item.kepala || '-'}</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="calendar" class="w-4 h-4 text-hijau-500 flex-shrink-0"></i>
+              <span>Tahun Binaan: ${item.tahun || '-'}</span>
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render Kegiatan List
+    function renderKegiatanList() {
+      const container = document.getElementById('kegiatanList');
+      const emptyState = document.getElementById('emptyKegiatan');
+      const kegiatanData = allData.filter(d => d.type === 'kegiatan');
+
+      if (kegiatanData.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      
+      const existingItems = new Map(
+        [...container.children].map(el => [el.dataset.id, el])
+      );
+
+      kegiatanData.forEach(item => {
+        if (existingItems.has(item.__backendId)) {
+          updateKegiatanCard(existingItems.get(item.__backendId), item);
+          existingItems.delete(item.__backendId);
+        } else {
+          container.appendChild(createKegiatanCard(item));
+        }
+      });
+
+      existingItems.forEach(el => el.remove());
+      lucide.createIcons();
+    }
+
+    function createKegiatanCard(item) {
+      const div = document.createElement('div');
+      div.dataset.id = item.__backendId;
+      div.className = 'bg-white rounded-2xl shadow-lg border border-gray-100 p-6 card-hover';
+      updateKegiatanCardContent(div, item);
+      return div;
+    }
+
+    function updateKegiatanCard(el, item) {
+      updateKegiatanCardContent(el, item);
+    }
+
+    function updateKegiatanCardContent(el, item) {
+      el.innerHTML = `
+        <div class="flex items-start justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-hijau-100 to-emas-100 flex items-center justify-center">
+              <i data-lucide="clipboard-check" class="w-6 h-6 text-hijau-600"></i>
+            </div>
+            <div>
+              <p class="text-sm text-gray-500">${item.tanggal || '-'}</p>
+              <h4 class="font-heading text-lg font-semibold text-hijau-900">${item.name || 'Nama Kegiatan'}</h4>
+            </div>
+          </div>
+          <div class="flex gap-1">
+            <button onclick="editKegiatan('${item.__backendId}')" class="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+              <i data-lucide="edit-2" class="w-4 h-4 text-gray-500"></i>
+            </button>
+            <button onclick="confirmDelete('${item.__backendId}', 'kegiatan')" class="p-2 hover:bg-red-50 rounded-lg transition-colors">
+              <i data-lucide="trash-2" class="w-4 h-4 text-red-500"></i>
+            </button>
+          </div>
+        </div>
+        <p class="text-gray-600 mb-4">${item.deskripsi || '-'}</p>
+        <div class="flex flex-wrap gap-4 text-sm text-gray-500">
+          <span class="flex items-center gap-1">
+            <i data-lucide="map-pin" class="w-4 h-4"></i>
+            ${item.lokasi || '-'}
+          </span>
+          <span class="flex items-center gap-1">
+            <i data-lucide="users" class="w-4 h-4"></i>
+            ${item.peserta || '-'} peserta
+          </span>
+        </div>
+      `;
+    }
+
+    // Update Stats
+    function updateStats() {
+      const madrasahCount = allData.filter(d => d.type === 'madrasah').length;
+      const kegiatanCount = allData.filter(d => d.type === 'kegiatan').length;
+      document.getElementById('statMadrasah').textContent = madrasahCount;
+      document.getElementById('statKegiatan').textContent = kegiatanCount;
+    }
+
+    // Modal functions
+    function openModal(type, editId = null) {
+      const modal = document.getElementById('modal');
+      const title = document.getElementById('modalTitle');
+      const content = document.getElementById('modalContent');
+
+      if (type === 'madrasah') {
+        const editData = editId ? allData.find(d => d.__backendId === editId) : null;
+        title.textContent = editId ? 'Edit Madrasah' : 'Tambah Madrasah Binaan';
+        content.innerHTML = `
+          <form id="madrasahForm" class="space-y-4">
+            <input type="hidden" id="editId" value="${editId || ''}">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Nama Madrasah</label>
+              <input type="text" id="namaMadrasah" value="${editData?.name || ''}" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all" placeholder="MAN 1 Pacitan">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Jenjang</label>
+              <select id="jenjangMadrasah" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+                <option value="MA" ${editData?.jenjang === 'MA' ? 'selected' : ''}>MA (Madrasah Aliyah)</option>
+                <option value="MTs" ${editData?.jenjang === 'MTs' ? 'selected' : ''}>MTs (Madrasah Tsanawiyah)</option>
+                <option value="MI" ${editData?.jenjang === 'MI' ? 'selected' : ''}>MI (Madrasah Ibtidaiyah)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
+              <input type="text" id="alamatMadrasah" value="${editData?.alamat || ''}" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all" placeholder="Jl. Raya Pacitan No. 1">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Kepala Madrasah</label>
+              <input type="text" id="kepalaMadrasah" value="${editData?.kepala || ''}" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all" placeholder="Nama Kepala Madrasah">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Tahun Pembinaan</label>
+              <input type="text" id="tahunMadrasah" value="${editData?.tahun || ''}" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all" placeholder="2020">
+            </div>
+            <button type="submit" class="w-full bg-hijau-600 hover:bg-hijau-700 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2">
+              <i data-lucide="save" class="w-5 h-5"></i>
+              ${editId ? 'Simpan Perubahan' : 'Tambah Madrasah'}
+            </button>
+          </form>
+        `;
+        document.getElementById('madrasahForm').addEventListener('submit', handleMadrasahSubmit);
+      } else if (type === 'kegiatan') {
+        const editData = editId ? allData.find(d => d.__backendId === editId) : null;
+        title.textContent = editId ? 'Edit Kegiatan' : 'Tambah Kegiatan';
+        content.innerHTML = `
+          <form id="kegiatanForm" class="space-y-4">
+            <input type="hidden" id="editKegiatanId" value="${editId || ''}">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Nama Kegiatan</label>
+              <input type="text" id="namaKegiatan" value="${editData?.name || ''}" required class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all" placeholder="Supervisi Akademik">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
+              <input type="date" id="tanggalKegiatan" value="${editData?.tanggal || ''}" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
+              <textarea id="deskripsiKegiatan" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all resize-none" placeholder="Deskripsi kegiatan...">${editData?.deskripsi || ''}</textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Lokasi</label>
+              <input type="text" id="lokasiKegiatan" value="${editData?.lokasi || ''}" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all" placeholder="MAN 1 Pacitan">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Jumlah Peserta</label>
+              <input type="text" id="pesertaKegiatan" value="${editData?.peserta || ''}" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all" placeholder="25">
+            </div>
+            <button type="submit" class="w-full bg-hijau-600 hover:bg-hijau-700 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2">
+              <i data-lucide="save" class="w-5 h-5"></i>
+              ${editId ? 'Simpan Perubahan' : 'Tambah Kegiatan'}
+            </button>
+          </form>
+        `;
+        document.getElementById('kegiatanForm').addEventListener('submit', handleKegiatanSubmit);
+      }
+
+      modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    // Handle form submissions
+    async function handleMadrasahSubmit(e) {
+      e.preventDefault();
+      const editId = document.getElementById('editId').value;
+      const data = {
+        type: 'madrasah',
+        name: document.getElementById('namaMadrasah').value,
+        jenjang: document.getElementById('jenjangMadrasah').value,
+        alamat: document.getElementById('alamatMadrasah').value,
+        kepala: document.getElementById('kepalaMadrasah').value,
+        tahun: document.getElementById('tahunMadrasah').value
+      };
+
+      showLoading();
+      
+      if (editId) {
+        const existingData = allData.find(d => d.__backendId === editId);
+        if (existingData) {
+          const result = await window.dataSdk.update({ ...existingData, ...data });
+          if (!result.isOk) {
+            hideLoading();
+            showToast('Gagal menyimpan perubahan', 'error');
+            return;
+          }
+        }
+      } else {
+        if (allData.length >= 999) {
+          hideLoading();
+          showToast('Batas maksimum 999 data telah tercapai', 'error');
+          return;
+        }
+        const result = await window.dataSdk.create(data);
+        if (!result.isOk) {
+          hideLoading();
+          showToast('Gagal menambahkan data', 'error');
+          return;
+        }
+      }
+
+      hideLoading();
+      closeModal();
+      showToast(editId ? 'Data berhasil diperbarui' : 'Madrasah berhasil ditambahkan', 'success');
+    }
+
+    async function handleKegiatanSubmit(e) {
+      e.preventDefault();
+      const editId = document.getElementById('editKegiatanId').value;
+      const data = {
+        type: 'kegiatan',
+        name: document.getElementById('namaKegiatan').value,
+        tanggal: document.getElementById('tanggalKegiatan').value,
+        deskripsi: document.getElementById('deskripsiKegiatan').value,
+        lokasi: document.getElementById('lokasiKegiatan').value,
+        peserta: document.getElementById('pesertaKegiatan').value
+      };
+
+      showLoading();
+      
+      if (editId) {
+        const existingData = allData.find(d => d.__backendId === editId);
+        if (existingData) {
+          const result = await window.dataSdk.update({ ...existingData, ...data });
+          if (!result.isOk) {
+            hideLoading();
+            showToast('Gagal menyimpan perubahan', 'error');
+            return;
+          }
+        }
+      } else {
+        if (allData.length >= 999) {
+          hideLoading();
+          showToast('Batas maksimum 999 data telah tercapai', 'error');
+          return;
+        }
+        const result = await window.dataSdk.create(data);
+        if (!result.isOk) {
+          hideLoading();
+          showToast('Gagal menambahkan data', 'error');
+          return;
+        }
+      }
+
+      hideLoading();
+      closeModal();
+      showToast(editId ? 'Data berhasil diperbarui' : 'Kegiatan berhasil ditambahkan', 'success');
+    }
+
+    // Edit functions
+    function editMadrasah(id) {
+      openModal('madrasah', id);
+    }
+
+    function editKegiatan(id) {
+      openModal('kegiatan', id);
+    }
+
+    // Delete functions
+    function confirmDelete(id, type) {
+      const deleteConfirm = document.getElementById('deleteConfirm');
+      deleteConfirm.classList.remove('hidden');
+      
+      deleteCallback = async () => {
+        const item = allData.find(d => d.__backendId === id);
+        if (item) {
+          showLoading();
+          const result = await window.dataSdk.delete(item);
+          hideLoading();
+          if (result.isOk) {
+            showToast('Data berhasil dihapus', 'success');
+          } else {
+            showToast('Gagal menghapus data', 'error');
+          }
+        }
+        closeDeleteConfirm();
+      };
+
+      document.getElementById('confirmDeleteBtn').onclick = deleteCallback;
+    }
+
+    function closeDeleteConfirm() {
+      document.getElementById('deleteConfirm').classList.add('hidden');
+      deleteCallback = null;
+    }
+
+    // Loading overlay
+    function showLoading() {
+      document.getElementById('loadingOverlay').classList.remove('hidden');
+    }
+
+    function hideLoading() {
+      document.getElementById('loadingOverlay').classList.add('hidden');
+    }
+
+    // Toast notification
+    function showToast(message, type = 'success') {
+      const toast = document.createElement('div');
+      const bgColor = type === 'success' ? 'bg-hijau-600' : 'bg-red-500';
+      toast.className = `fixed bottom-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in flex items-center gap-2`;
+      toast.innerHTML = `
+        <i data-lucide="${type === 'success' ? 'check-circle' : 'alert-circle'}" class="w-5 h-5"></i>
+        ${message}
+      `;
+      document.body.appendChild(toast);
+      lucide.createIcons();
+      
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('hidden');
+      });
+    });
+
+    // Edit mode functions
+    function openEditModal(section) {
+      const modal = document.getElementById('modal');
+      const title = document.getElementById('modalTitle');
+      const content = document.getElementById('modalContent');
+
+      if (section === 'beranda') {
+        title.textContent = 'Edit Beranda';
+        content.innerHTML = `
+          <form id="berandaForm" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Nama Pengawas</label>
+              <input type="text" id="editNamaPengawas" value="${config.nama_pengawas || defaultConfig.nama_pengawas}" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Jabatan</label>
+              <input type="text" id="editJabatan" value="${config.jabatan || defaultConfig.jabatan}" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Instansi</label>
+              <input type="text" id="editInstansi" value="${config.instansi || defaultConfig.instansi}" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Sambutan Singkat</label>
+              <textarea id="editSambutan" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all resize-none">${config.sambutan || defaultConfig.sambutan}</textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Kutipan Visi</label>
+              <textarea id="editKutipan" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all resize-none">${config.kutipan || defaultConfig.kutipan}</textarea>
+            </div>
+            <button type="submit" class="w-full bg-hijau-600 hover:bg-hijau-700 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2">
+              <i data-lucide="save" class="w-5 h-5"></i> Simpan Perubahan
+            </button>
+          </form>
+        `;
+        document.getElementById('berandaForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          window.elementSdk.setConfig({
+            nama_pengawas: document.getElementById('editNamaPengawas').value,
+            jabatan: document.getElementById('editJabatan').value,
+            instansi: document.getElementById('editInstansi').value,
+            sambutan: document.getElementById('editSambutan').value,
+            kutipan: document.getElementById('editKutipan').value
+          });
+          closeModal();
+          showToast('Beranda berhasil diperbarui', 'success');
+        });
+      } else if (section === 'program') {
+        title.textContent = 'Edit Program Pendampingan';
+        content.innerHTML = `
+          <form id="programForm" class="space-y-4 max-h-96 overflow-y-auto">
+            <div class="bg-hijau-50 p-4 rounded-lg mb-4">
+              <p class="text-sm text-hijau-900 font-semibold mb-2">Program 1: Peningkatan Mutu Pembelajaran</p>
+              <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Judul</label>
+                <input type="text" id="program1Title" value="Peningkatan Mutu Pembelajaran" class="w-full px-3 py-2 border border-gray-200 rounded text-sm focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+              </div>
+              <div class="mt-2">
+                <label class="block text-xs font-medium text-gray-700 mb-1">Deskripsi</label>
+                <textarea id="program1Desc" rows="2" class="w-full px-3 py-2 border border-gray-200 rounded text-sm focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all resize-none">Pendampingan implementasi kurikulum merdeka, pengembangan metode pembelajaran inovatif, dan peningkatan kompetensi guru.</textarea>
+              </div>
+            </div>
+            <div class="bg-emas-50 p-4 rounded-lg mb-4">
+              <p class="text-sm text-hijau-900 font-semibold mb-2">Program 2: Tata Kelola & Digitalisasi</p>
+              <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Judul</label>
+                <input type="text" id="program2Title" value="Tata Kelola & Digitalisasi" class="w-full px-3 py-2 border border-gray-200 rounded text-sm focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+              </div>
+              <div class="mt-2">
+                <label class="block text-xs font-medium text-gray-700 mb-1">Deskripsi</label>
+                <textarea id="program2Desc" rows="2" class="w-full px-3 py-2 border border-gray-200 rounded text-sm focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all resize-none">Penguatan manajemen madrasah dan transformasi digital dalam administrasi dan layanan pendidikan.</textarea>
+              </div>
+            </div>
+            <div class="bg-hijau-50 p-4 rounded-lg mb-4">
+              <p class="text-sm text-hijau-900 font-semibold mb-2">Program 3: Lingkungan Belajar Inklusif</p>
+              <div>
+                <label class="block text-xs font-medium text-gray-700 mb-1">Judul</label>
+                <input type="text" id="program3Title" value="Lingkungan Belajar Inklusif" class="w-full px-3 py-2 border border-gray-200 rounded text-sm focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+              </div>
+              <div class="mt-2">
+                <label class="block text-xs font-medium text-gray-700 mb-1">Deskripsi</label>
+                <textarea id="program3Desc" rows="2" class="w-full px-3 py-2 border border-gray-200 rounded text-sm focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all resize-none">Menciptakan suasana belajar yang ramah, aman, dan mendukung keberagaman peserta didik.</textarea>
+              </div>
+            </div>
+            <button type="submit" class="w-full bg-hijau-600 hover:bg-hijau-700 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2">
+              <i data-lucide="save" class="w-5 h-5"></i> Simpan Perubahan
+            </button>
+          </form>
+        `;
+        document.getElementById('programForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          showToast('Program berhasil diperbarui', 'success');
+          closeModal();
+        });
+      } else if (section === 'footer') {
+        title.textContent = 'Edit Footer';
+        content.innerHTML = `
+          <form id="footerForm" class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+              <input type="email" id="editEmail" value="pengawas@kemenag-pacitan.go.id" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Nomor Telepon</label>
+              <input type="tel" id="editPhone" value="(0357) 881234" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
+              <input type="text" id="editAddress" value="Kemenag Kab. Pacitan, Jawa Timur" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi Website</label>
+              <textarea id="editDescription" rows="3" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all resize-none">Website resmi Pengawas Madrasah Kementerian Agama Kabupaten Pacitan. Bersama meningkatkan mutu pendidikan madrasah.</textarea>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-1">Tahun Hak Cipta</label>
+              <input type="text" id="editCopyright" value="2024" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hijau-500 focus:border-hijau-500 outline-none transition-all">
+            </div>
+            <button type="submit" class="w-full bg-hijau-600 hover:bg-hijau-700 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2">
+              <i data-lucide="save" class="w-5 h-5"></i> Simpan Perubahan
+            </button>
+          </form>
+        `;
+        document.getElementById('footerForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          showToast('Footer berhasil diperbarui', 'success');
+          closeModal();
+        });
+      }
+
+      modal.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Initialize
+    initApp();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e19a77d35bdfdca',t:'MTc3NDM5NzAyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
